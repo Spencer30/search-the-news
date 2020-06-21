@@ -4,6 +4,7 @@ import axios from 'axios';
 import Title from './components/Title'
 import SearchBar from './components/SearchBar';
 import NewsContainer from './components/NewsContainer'
+import WeatherCard from './components/WeatherCard';
 
 class App extends React.Component {
   state = { news: [], widgets: true }
@@ -26,7 +27,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="appContainer">
-        <div className="ui left vertical menu">Weather Card</div>
+        <div className="ui left vertical menu"><WeatherCard /></div>
         <div className="ui container" >
           <div className="fixSearch">
             <Title />
