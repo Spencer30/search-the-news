@@ -12,11 +12,11 @@ const StockCard = props => {
     const [stockData, setStockData] = useState({});
     const [stockName, setStockName] = useState({});
     const getStockData = () => {
-        let num = randomStock(dowStocks.length);
+        let num = 4 // randomStock(dowStocks.length);
         setStockName(() => ({ ticker: dowStocks[num].ticker, name: dowStocks[num].name }))
         let weekendCheck = moment().format('dddd');
         let momentDate;
-        if(weekendCheck === 'Saturday' || weekendCheck === 'Sunday'){
+        if (weekendCheck === 'Saturday' || weekendCheck === 'Sunday') {
             let day = weekendCheck === 'Sunday' ? moment().subtract(2, 'days') : moment().subtract(1, 'days');
             momentDate = moment(day).format('YYYY MM D')
 
@@ -49,9 +49,10 @@ const StockCard = props => {
                     <h5><span style={{ fontWeight: 'lighter' }}> Low:  </span><span style={{ color: '#5cdb95' }}> $</span> {stockData['3. low']}  </h5>
                     <h5><span style={{ fontWeight: 'lighter' }}> Close:</span><span style={{ color: '#5cdb95' }}> $</span> {stockData['4. close']}</h5>
                 </div>
-            </div>
-            <div style={{ textAlign: 'center' }}>
-                <button onClick={getStockData} style={styles.button}>Get New Stock</button>
+
+                <div style={{ textAlign: 'center' }}>
+                    <button onClick={getStockData} style={styles.button}>Get New Stock</button>
+                </div>
             </div>
         </Card>
     )
@@ -66,7 +67,7 @@ const styles = {
         padding: 15
     },
     button: {
-        margin: '1rem',
+        marginTop: '1rem',
         backgroundColor: '#4285F4',
         border: '.1px solid #4285F4',
         borderRadius: 15,

@@ -119,3 +119,60 @@ box-shadow: none !important;
   margin:auto;
   margin-bottom: 2.5rem;
 }
+/* @media only screen
+and (min-device-width: 0)
+and (max-device-width:1600){
+  .fixSearch {
+      position: relative !important;
+      display: flex !important;
+      width:100%;
+  }
+}
+*/
+
+@media screen
+and (min-width: 1566px)
+{
+  .mobileContainer{
+      display: none !important;
+  }
+  .menu{
+      display: block !important;
+  }
+  .fixSearch {
+      position: fixed;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+      text-align: center;
+      width: 81rem;
+      background-color: white;
+      z-index: 3;
+  }
+  .weatherCard {
+      position: fixed !important;
+  }
+  .stock {
+      position: fixed !important;
+  }
+  .items {
+      margin-top:18rem !important;
+  }
+}
+
+@media screen
+and (max-width:1565px){
+  .mobileContainer{
+      display: flex !important;
+  }
+  .menu {
+      display: none !important;
+  }
+  .appContainer{
+      max-width: 100%;
+      height: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 0rem;
+  }
+}

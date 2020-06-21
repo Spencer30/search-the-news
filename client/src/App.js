@@ -28,18 +28,23 @@ class App extends React.Component {
   render() {
     return (
       <div className="appContainer">
-        <div className="ui left vertical menu"><WeatherCard /></div>
+        <div className="ui left vertical menu cardLeft"><WeatherCard /></div>
         <div className="ui container" >
           <div className="fixSearch">
             <Title />
             <p className="powered">(Powered By NewsApi)</p>
             <SearchBar onSubmit={this.onSearchSubmit} />
           </div>
-          
+          <div className="mobileContainer">
+            <div style={{ display: this.state.widgets ? 'block' : 'none' }} className="cardW"><WeatherCard /></div>
+            <br></br>
+            <div style={{ display: this.state.widgets ? 'block' : 'none' }} className="cardW"><StockCard /></div>
+            <button onClick={this.showWidgets} className="widgetBtn" style={{ display: this.state.widgets ? 'none' : 'block' }}>Show Widgets</button>
+          </div>
           <NewsContainer newsArticles={this.state.news} />
         </div>
 
-        <div className="ui right vertical menu"><StockCard /></div>
+        <div className="ui right vertical menu cardRight"><StockCard /></div>
       </div>
     );
   }

@@ -28,7 +28,7 @@ app.get('/news', (req, res) => {
 })
 
 app.get('/weather', (req, res) => {
-  console.log(req.query.msg)
+  // console.log(req.query.msg)
   axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${req.query.lat}&lon=${req.query.lon}&APPID=${process.env.WEATHER_API_KEY}`, {APPID:process.env.WEATHER_API_KEY}).then(response => {
     return res.status(200).send(response.data);
   }).catch(err => {
@@ -39,8 +39,8 @@ app.get('/weather', (req, res) => {
 app.get('/stockdata', (req, res) => {
   console.log(req.query.stock);
   axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${req.query.stock}&interval=5min&outputsize=compact&apikey=${process.env.STOCK_API}`).then(response => {
-    console.log(response.data['Time Series (Daily)'][`${req.query.date}`])
-    console.log(response.data)
+    // console.log(response.data['Time Series (Daily)'][`${req.query.date}`])
+    // console.log(response.data)
     res.status(200).send(response.data['Time Series (Daily)'][`${req.query.date}`]);
   })
 })

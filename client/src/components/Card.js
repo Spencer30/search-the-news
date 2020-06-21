@@ -19,11 +19,11 @@ const Card = props => {
 
 const styles = {
     cardContainer: {
-        height: 300,
+        height: '100%',
         width: 210,
         borderRadius: 25,
         overflow: 'hidden',
-        boxShadow: '20px 20px 80px 15px grey', 
+        boxShadow: '10px 10px 20px 10px #ccc', 
     },
     imgContainer: {
         width: '100%',
