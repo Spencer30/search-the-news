@@ -30,3 +30,25 @@ button {
 .yellow {
   color: #F4B400;
 }
+
+.item{
+  cursor: pointer;
+}
+
+.source {
+  font-weight: bold;
+  color: darkblue;
+}
+
+.appContainer {
+  display: flex;
+}
+
+.menu {
+  margin-top: 10.3rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  border-radius: 25px !important;
+  border: none !important;
+  box-shadow: none !important;
+}

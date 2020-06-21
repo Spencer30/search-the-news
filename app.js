@@ -16,7 +16,15 @@ app.get('/', (req, res) => {
 });
 
 app.get('/news',  (req, res) => {
-
+    axios.get(`https://newsapi.org/v2/everything?q=${req.query.q}&apiKey=${process.env.API_KEY}&pageSize=100`, {
+      })
+      .then(function (response) {
+        // console.log(response.data);
+        res.send(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
 })
 
 app.get('/weather', (req, res) => {
