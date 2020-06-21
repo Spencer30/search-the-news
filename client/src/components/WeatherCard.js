@@ -1,17 +1,91 @@
-import React from 'react';
+
+import React, { useState, useRef } from 'react';
+import axios from 'axios';
 import Card from './Card';
+import {images} from './dataFiles/data';
+const moment = require('moment');
+
+const randomNum = ()=> Math.floor(Math.random() * images.length);  
 
 const WeatherCard = props => {
+    const [weatherDesc, setWeatherDesc] = useState('');
+    const [weatherTemp, setWeatherTemp] = useState('');
+    const [highTemp, setHighTemp] = useState('');
+    const [lowTemp, setLowTemp] = useState('');
+    const [city, setCity] = useState('');
+    const [lat, setLat] = useState(null);
+    const [lon, setLon] = useState(null);
+    const [weatherIcon, setWeatherIcon] = useState('');
+    const imageNum = useRef(randomNum())
+
+    function geoFindMe() {
+        function success(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            setLat(() => latitude);
+            setLon(() => longitude);
+            if (!lat || !lon) return;
+            getWeather();
+        }
+
+        function error() {
+            console.log('Unable to retrieve your location');
+        }
+
+        if (!navigator.geolocation) {
+            console.log('Can\'t determine location');
+        } else {
+            navigator.geolocation.getCurrentPosition(success, error);
+        }
+
+
+    }
+    geoFindMe()
+
+
+    const getWeather = () => {
+        if (!city) {
+            axios.get('/weather', {
+                params: {
+                    lat: lat,
+                    lon: lon,
+                    msg: 'Fetching weather...'
+                }
+            }).then(res => {
+                // console.log(lat, lon)
+                // console.log(res.data.weather[0].main);
+                let weatherType = res.data.weather[0].main;
+                  let icon = determineWeatherIcon(weatherType);
+                  setWeatherIcon(() => icon);
+                let des = res.data.weather[0].description;
+                setWeatherDesc(() => des);
+                let temp = res.data.main.temp;
+                temp = convertKtoF(temp);
+                setWeatherTemp(() => temp);
+                let low = res.data.main.temp_min;
+                low = convertKtoF(low);
+                setLowTemp(() => low);
+                let high = res.data.main.temp_max;
+                high = convertKtoF(high);
+                setHighTemp(() => high);
+                let cityName = res.data.name;
+                setCity(() => cityName);
+                return;
+            }).catch(err => {
+                console.log(err);
+            })
+        }
+    }
     return (
-        <Card img={require('../images/lake.jpg')} title="75 *" subTitle="Kansas City, MO">
+        <Card img={images[imageNum.current]} title={weatherTemp+'°'} subTitle={city} alt="random Unsplash picture">
             <div style={styles.bottomCardContainer}>
                 <div style={styles.dateContainer}>
-                    <h3>Friday | June 19th</h3>
+                    <h3>{moment().format('dddd')} | {moment().format('MMMM Do')}</h3>
                 </div>
                 <div style={styles.weatherReport}>
-                    <h5 style={styles.weatherText}>broken clouds</h5>
-                    <h5 style={styles.weatherText}>87 * | 64 * </h5>
-                    <img src={require('../images/sun.png')} style={styles.img}/>
+                    <h5 style={styles.weatherText}>{weatherDesc}</h5>
+                    <h5 style={styles.weatherText}>{highTemp}° | {lowTemp}° </h5>
+                    {weatherIcon}
                 </div>
             </div>
         </Card>
@@ -46,6 +120,30 @@ const styles = {
         right: 35,
         top: '30%'
     }
+}
+const determineWeatherIcon = term => {
+    switch(term){
+      case 'Sunny':
+        return <img style={styles.img} src={require('../images/sun.png')} alt='sun' />
+      case 'Clouds':
+        return <img style={styles.img} src={require('../images/cloud.png')} alt='clouds'/>
+      case 'Rain':
+        return <img style={styles.img} src={require('../images/rain.png')} alt='rain'/>
+      case 'Snow':
+        return <img style={styles.img} src={require('../images/snow.png')} alt='snow'/>
+      case 'Partly Cloudy':
+        return <img style={styles.img} src={require('../images/sunC.png')} alt='sun'/>
+      case 'Clear':
+        return <img style={styles.img} src={require('../images/sun.png')} alt='sun' />
+      default:
+        return <img style={styles.img} src={require('../images/sunC.png')} alt='sun'/>
+    } 
+  }
+
+const convertKtoF = (temp) => {
+    temp = (temp - 273.15) * (9 / 5) + 32;
+    temp = Math.round(temp);
+    return (temp);
 }
 
 export default WeatherCard;
