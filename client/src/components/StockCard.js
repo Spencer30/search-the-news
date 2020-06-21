@@ -12,7 +12,7 @@ const StockCard = props => {
     const [stockData, setStockData] = useState({});
     const [stockName, setStockName] = useState({});
     const getStockData = () => {
-        let num = 4 // randomStock(dowStocks.length);
+        let num = randomStock(dowStocks.length);
         setStockName(() => ({ ticker: dowStocks[num].ticker, name: dowStocks[num].name }))
         let weekendCheck = moment().format('dddd');
         let momentDate;
