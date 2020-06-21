@@ -5,6 +5,7 @@ import Title from './components/Title'
 import SearchBar from './components/SearchBar';
 import NewsContainer from './components/NewsContainer'
 import WeatherCard from './components/WeatherCard';
+import StockCard from './components/StockCard';
 
 class App extends React.Component {
   state = { news: [], widgets: true }
@@ -38,7 +39,7 @@ class App extends React.Component {
           <NewsContainer newsArticles={this.state.news} />
         </div>
 
-        <div className="ui right vertical menu">Stock Card</div>
+        <div className="ui right vertical menu"><StockCard /></div>
       </div>
     );
   }

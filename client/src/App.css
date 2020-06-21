@@ -8,6 +8,15 @@ button {
   font-weight: lighter;
 }
 
+.item{
+  cursor: pointer;
+}
+
+.source {
+  font-weight: bold;
+  color: darkblue;
+}
+
 .powered {
   font-size: 11.5px;
   font-weight: lighter;
@@ -31,15 +40,6 @@ button {
   color: #F4B400;
 }
 
-.item{
-  cursor: pointer;
-}
-
-.source {
-  font-weight: bold;
-  color: darkblue;
-}
-
 .appContainer {
   display: flex;
 }
@@ -51,4 +51,71 @@ button {
   border-radius: 25px !important;
   border: none !important;
   box-shadow: none !important;
+}
+
+.weatherCard {
+  border-radius: 25px !important;
+  border-color: transparent !important;
+  width: 210px !important;
+
+  /* position: fixed !important; */
+}
+
+.grayB {
+  border-top-left-radius:25px !important;
+  border-top-right-radius:25px !important;
+}
+.cardLeft {
+  position: fixed;
+  left: 50px
+}
+
+.cardRight {
+  position: fixed;
+  right: 50px
+}
+
+
+
+.mobileContainer {
+  width:100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top:1.5rem;
+}
+
+.widgetBtn {
+  width: 40%;
+  height: 40px;
+  border: 2px solid #4285F4;
+  background-color: transparent;
+  border-color: #4285F4;
+  border-radius: 25px;
+  color:#4285F4;
+}
+
+.cards{
+  justify-content: center !important;
+}
+.cardShadowRemove{
+  -webkit-box-shadow: none !important;
+-moz-box-shadow: none !important;
+box-shadow: none !important;
+}
+
+.grid {
+  margin-top: 3rem !important;
+  justify-content: center !important;
+  height: 400px;
+}
+
+.weatherContainer{
+  width: 50% !important;
+  margin-left: 10%;
+}
+
+.cardW{
+  margin:auto;
+  margin-bottom: 2.5rem;
 }
