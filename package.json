@@ -1,0 +1,11 @@
+{
+  "name": "search-the-news",
+  "version": "1.0.0",
+  "description": "Search for news articles",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Spencer Lyons",
+  "license": "ISC"
+}
