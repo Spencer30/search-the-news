@@ -7,8 +7,8 @@ const LightDarkButton = props => {
 }
 const styles={
     container: {
-        height: 35,
-        width: 35,
+        height: 25,
+        width: 25,
         cursor: 'pointer'
     },
     img: {
