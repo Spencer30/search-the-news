@@ -41,8 +41,8 @@ const StockCard = props => {
         getStockData();
     }, [])
     return (
-        <Card img={images[randomImage()]} title={`$${stockData['4. close']}`} subTitle={`${stockName.name} (${stockName.ticker})`} alt="random Unsplash picture">
-            <div style={styles.bottomCardContainer}>
+        <Card img={images[randomImage()]} title={`$${stockData['4. close']}`} subTitle={`${stockName.name} (${stockName.ticker})`} alt="random Unsplash picture" darkMode={props.darkMode}>
+            <div style={{...styles.bottomCardContainer, ...{backgroundColor:props.darkMode ? '#1c1c1c' : '', color:props.darkMode ? '#888' : ''}}}>
                 <div style={{ wordSpacing: 8 }}>
                     <h5><span style={{ fontWeight: 'lighter' }}> Open: </span><span style={{ color: '#5cdb95' }}> $</span> {stockData['1. open']} </h5>
                     <h5><span style={{ fontWeight: 'lighter' }}> High: </span><span style={{ color: '#5cdb95' }}> $</span> {stockData['2. high']} </h5>

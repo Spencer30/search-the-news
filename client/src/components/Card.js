@@ -2,7 +2,7 @@ import React from 'react';
 
 const Card = props => {
     return (
-        <div style={styles.cardContainer}>
+        <div style={{...styles.cardContainer, ...{boxShadow:props.darkMode ? 'none' : '10px 10px 20px 10px #ccc', border: props.darkMode ? '1px solid #888' : ''}}}>
             <div style={styles.imgContainer}>
                 <img src={props.img} style={styles.img} />
                 <div style={styles.topTextContainer}>
@@ -23,7 +23,7 @@ const styles = {
         width: 210,
         borderRadius: 25,
         overflow: 'hidden',
-        boxShadow: '10px 10px 20px 10px #ccc', 
+        // boxShadow: , 
     },
     imgContainer: {
         width: '100%',

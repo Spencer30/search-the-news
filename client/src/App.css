@@ -14,7 +14,7 @@ button {
 
 .source {
   font-weight: bold;
-  color: darkblue;
+  color: #4285F4;
 }
 
 .powered {
@@ -42,6 +42,7 @@ button {
 
 .appContainer {
   display: flex;
+  height: 100%;
 }
 
 .menu {
@@ -174,5 +175,8 @@ and (max-width:1565px){
       display: flex;
       flex-wrap: wrap;
       margin-top: 0rem;
+  }
+  .fixSearch {
+    margin-top: 45px;
   }
 }

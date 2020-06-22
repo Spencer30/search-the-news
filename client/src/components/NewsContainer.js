@@ -3,7 +3,7 @@ import NewsArticle from './NewsArticle';
 
 const NewsContainer= (props) => {
     const news = props.newsArticles.map((article, index) => {
-        return <NewsArticle key={index} article={article} />
+        return <NewsArticle key={index} article={article} darkMode={props.darkMode}/>
     })
 
    return(

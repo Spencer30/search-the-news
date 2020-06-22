@@ -1,0 +1,19 @@
+import React from 'react';
+
+const LightDarkButton = props => {
+    return <div style={styles.container} onClick={props.onClick}>
+            <img style={styles.img} src={props.darkMode ? require('../images/sun.png') :require('../images/moon.png')}/>
+    </div>
+}
+const styles={
+    container: {
+        height: 35,
+        width: 35,
+        cursor: 'pointer'
+    },
+    img: {
+        width: '100%',
+        height: '100%'
+    }
+}
+export default LightDarkButton;

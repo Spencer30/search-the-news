@@ -77,8 +77,8 @@ const WeatherCard = props => {
         }
     }
     return (
-        <Card img={images[imageNum.current]} title={weatherTemp+'°'} subTitle={city} alt="random Unsplash picture">
-            <div style={styles.bottomCardContainer}>
+        <Card img={images[imageNum.current]} title={weatherTemp+'°'} subTitle={city} alt="random Unsplash picture" darkMode={props.darkMode}>
+            <div style={{...styles.bottomCardContainer, ...{backgroundColor:props.darkMode ? '#1c1c1c' : '', color:props.darkMode ? 'white' : ''}}}>
                 <div style={styles.dateContainer}>
                     <h3>{moment().format('dddd')} | {moment().format('MMMM Do')}</h3>
                 </div>
