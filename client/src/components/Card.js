@@ -4,7 +4,7 @@ const Card = props => {
     return (
         <div style={{...styles.cardContainer, ...{boxShadow:props.darkMode ? 'none' : '10px 10px 20px 10px #ccc', border: props.darkMode ? '1px solid #888' : ''}}}>
             <div style={styles.imgContainer}>
-                <img src={props.img} style={styles.img} />
+                <img src={props.img} style={styles.img} alt="unsplash random"/>
                 <div style={styles.topTextContainer}>
                     <h2 style={styles.topText}>{props.title}</h2>
                     <h4 style={styles.topText}>{props.subTitle}</h4>

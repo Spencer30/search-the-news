@@ -33,10 +33,10 @@ export const dowStocks = [
         ticker:'GS',
         name:'Goldman Sachs Group Inc'
     },
-    {
-        ticker:'HD',
-        name:'Home Depot Inc'
-    },
+    // {
+    //     ticker:'HD',
+    //     name:'Home Depot Inc'
+    // },
     {
         ticker:'IBM',
         name:'International Business Machines Corp'
@@ -81,26 +81,26 @@ export const dowStocks = [
         ticker:'PFE',
         name:'Pfizer Inc'
     },
-    {
-        ticker:'PG',
-        name:'Procter & Gamble Co'
-    },
+    // {
+    //     ticker:'PG',
+    //     name:'Procter & Gamble Co'
+    // },
     {
         ticker:'TRV',
         name:'Travelers Companies Inc'
     },
-    {
-        ticker:'UNH',
-        name:'UnitedHealth Group Inc'
-    },
+    // {
+    //     ticker:'UNH',
+    //     name:'UnitedHealth Group Inc'
+    // },
     {
         ticker:'UTX',
         name:'United Technologies Corp'
     },
-    {
-        ticker:'VZ',
-        name:'Verizon Communications Inc'
-    },
+    // {
+    //     ticker:'VZ',
+    //     name:'Verizon Communications Inc'
+    // },
     {
         ticker:'V',
         name:'Visa Inc'
@@ -118,7 +118,7 @@ export const dowStocks = [
         name:'Walt Disney Co'
     },
     {
-        ticker:'Dow',
+        ticker:'DOW',
         name:'Dow Inc'
     },
 ]

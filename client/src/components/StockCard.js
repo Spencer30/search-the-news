@@ -7,7 +7,6 @@ const moment = require('moment');
 const randomStock = (n) => Math.floor(Math.random() * n);
 const randomImage = () => Math.floor(Math.random() * images.length);
 
-
 const StockCard = props => {
     const [stockData, setStockData] = useState({});
     const [stockName, setStockName] = useState({});
@@ -40,15 +39,17 @@ const StockCard = props => {
         // console.log(dowStocks[1].name)
         getStockData();
     }, [])
+    const stockPrice = stockData['4. close'] === undefined ? '$0' : stockData['4. close'];
+    const noPriceFound = <h4>Sorry, stock cannot be retrieved at this time. Try again later.</h4>
     return (
-        <Card img={images[randomImage()]} title={`$${stockData['4. close']}`} subTitle={`${stockName.name} (${stockName.ticker})`} alt="random Unsplash picture" darkMode={props.darkMode}>
+        <Card img={images[randomImage()]} title={stockPrice} subTitle={`${stockName.name} (${stockName.ticker})`} alt="random Unsplash picture" darkMode={props.darkMode}>
             <div style={{...styles.bottomCardContainer, ...{backgroundColor:props.darkMode ? '#1c1c1c' : '', color:props.darkMode ? '#888' : ''}}}>
-                <div style={{ wordSpacing: 8 }}>
+                {stockData['4. close'] === undefined ? noPriceFound : <div style={{ wordSpacing: 8 }}>
                     <h5><span style={{ fontWeight: 'lighter' }}> Open: </span><span style={{ color: '#5cdb95' }}> $</span> {stockData['1. open']} </h5>
                     <h5><span style={{ fontWeight: 'lighter' }}> High: </span><span style={{ color: '#5cdb95' }}> $</span> {stockData['2. high']} </h5>
                     <h5><span style={{ fontWeight: 'lighter' }}> Low:  </span><span style={{ color: '#5cdb95' }}> $</span> {stockData['3. low']}  </h5>
                     <h5><span style={{ fontWeight: 'lighter' }}> Close:</span><span style={{ color: '#5cdb95' }}> $</span> {stockData['4. close']}</h5>
-                </div>
+                </div>}
 
                 <div style={{ textAlign: 'center' }}>
                     <button onClick={getStockData} style={styles.button}>Get New Stock</button>
