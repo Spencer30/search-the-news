@@ -46,7 +46,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="appContainer" style={{ backgroundColor: this.state.darkMode ? '#121212' : 'white', height: this.state.news.length === 0 ? '100vh' : '100%' }}>
-        <div style={{ position: 'absolute', top: 10, right: 15 }}><LightDarkButton darkMode={this.state.darkMode} onClick={this.handleDarkMode} /></div>
+        <div style={{ position: 'fixed', top: 10, right: 15 }}><LightDarkButton darkMode={this.state.darkMode} onClick={this.handleDarkMode} /></div>
         <div className="ui left vertical menu cardLeft"><WeatherCard darkMode={this.state.darkMode} /></div>
         <div style={{ display: this.state.articleDisplay ? 'block' : 'none' }}><NewsArticlePopUp /></div>
 
@@ -59,7 +59,7 @@ class App extends React.Component {
           <div className="mobileContainer">
             <div style={{ display: this.state.widgets ? 'block' : 'none' }} className="cardW"><WeatherCard darkMode={this.state.darkMode} /></div>
             <br></br>
-            <div style={{ display: this.state.widgets ? 'block' : 'none' }} className="cardW"><StockCard darkMode={this.state.darkMode} /></div>
+            <div style={{ visibility: this.state.widgets ? 'visible' : 'hidden' }} className="cardW"><StockCard darkMode={this.state.darkMode} /></div>
             <button onClick={this.showWidgets} className="widgetBtn" style={{ display: this.state.widgets ? 'none' : 'block' }}>Show Widgets</button>
           </div>
           <NewsContainer newsArticles={this.state.news} darkMode={this.state.darkMode} clickArticle={this.articleClick}/>
