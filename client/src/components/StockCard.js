@@ -15,16 +15,17 @@ const StockCard = props => {
         setStockName(() => ({ ticker: dowStocks[num].ticker, name: dowStocks[num].name }))
         let weekendCheck = moment().format('dddd');
         let momentDate;
+        
         if (weekendCheck === 'Saturday' || weekendCheck === 'Sunday') {
             let day = weekendCheck === 'Sunday' ? moment().subtract(2, 'days') : moment().subtract(1, 'days');
-            momentDate = moment(day).format('YYYY MM D')
+            momentDate = moment(day).format('YYYY MM DD')
 
         } else {
-            momentDate = moment().format('YYYY MM D');
+            momentDate = moment().format('YYYY MM DD');
         }
-        momentDate = momentDate.split(' ').join('-')
+        momentDate = momentDate.split(' ').join('-');
         axios.get('/stockdata', { params: { stock: dowStocks[num].ticker, date: momentDate } }).then(res => {
-            // console.log(res);
+            console.log(res);
             // console.log(Object.values(res.data.slice(0, -2)));
             let myDataObj = res.data;
             for (let key in myDataObj) {

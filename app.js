@@ -38,9 +38,9 @@ app.get('/weather', (req, res) => {
 
 app.get('/stockdata', (req, res) => {
   try{
-  // console.log(req.query);
+  console.log(req.query.date);
   axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${req.query.stock}&outputsize=compact&apikey=${process.env.STOCK_API}`).then(response => {
-    // console.log(response.data['Time Series (Daily)'][`${req.query.date}`])
+    console.log('data is:' + response.data['Time Series (Daily)'][`${req.query.date}`])
     // console.log(response.data)
     res.status(200).send(response.data['Time Series (Daily)'][`${req.query.date}`]);
   }).catch(err => {
