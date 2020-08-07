@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { images, dowStocks } from './dataFiles/data'
 import axios from 'axios';
 import Card from './Card';
@@ -10,6 +10,8 @@ const randomImage = () => Math.floor(Math.random() * images.length);
 const StockCard = props => {
     const [stockData, setStockData] = useState({});
     const [stockName, setStockName] = useState({});
+    const imageNum = useRef(randomImage())
+
     const getStockData = () => {
         let num = randomStock(dowStocks.length);
         setStockName(() => ({ ticker: dowStocks[num].ticker, name: dowStocks[num].name }))
@@ -43,7 +45,7 @@ const StockCard = props => {
     const stockPrice = stockData['4. close'] === undefined ? '$0' : stockData['4. close'];
     const noPriceFound = <h4>Sorry, stock cannot be retrieved at this time. Try again later.</h4>
     return (
-        <Card img={images[randomImage()]} title={stockPrice} subTitle={`${stockName.name} (${stockName.ticker})`} alt="random Unsplash picture" darkMode={props.darkMode}>
+        <Card img={images[imageNum.current]} title={stockPrice} subTitle={`${stockName.name} (${stockName.ticker})`} alt="random Unsplash picture" darkMode={props.darkMode}>
             <div style={{...styles.bottomCardContainer, ...{backgroundColor:props.darkMode ? '#1c1c1c' : '', color:props.darkMode ? '#888' : ''}}}>
                 {stockData['4. close'] === undefined ? noPriceFound : <div style={{ wordSpacing: 8 }}>
                     <h5><span style={{ fontWeight: 'lighter' }}> Open: </span><span style={{ color: '#5cdb95' }}> $</span> {stockData['1. open']} </h5>

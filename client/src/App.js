@@ -16,6 +16,15 @@ class App extends React.Component {
     this.setState({ widgets: !pre.widgets });
   }
 
+  componentDidMount(){
+    const hours = new Date().getHours();
+    if(hours <= 5 || hours >= 19){
+      this.setState({darkMode:true})
+    } else {
+      this.setState({darkMode:false})
+    }
+  }
+
   onSearchSubmit = term => {
     axios.get('/news', {
       params: { q: term }
