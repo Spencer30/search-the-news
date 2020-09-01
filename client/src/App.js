@@ -68,7 +68,7 @@ class App extends React.Component {
           <div className="mobileContainer">
             <div style={{ display: this.state.widgets ? 'block' : 'none' }} className="cardW"><WeatherCard darkMode={this.state.darkMode} /></div>
             <br></br>
-            <div style={{ visibility: this.state.widgets ? 'visible' : 'hidden' }} className="cardW"><StockCard darkMode={this.state.darkMode} /></div>
+            <div style={{ display: this.state.widgets ? 'block' : 'none' }} className="cardW"><StockCard darkMode={this.state.darkMode} /></div>
             <button onClick={this.showWidgets} className="widgetBtn" style={{ display: this.state.widgets ? 'none' : 'block' }}>Show Widgets</button>
           </div>
           <NewsContainer newsArticles={this.state.news} darkMode={this.state.darkMode} clickArticle={this.articleClick}/>
