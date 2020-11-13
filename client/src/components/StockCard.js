@@ -42,7 +42,7 @@ const StockCard = props => {
         // console.log(dowStocks[1].name)
         getStockData();
     }, [])
-    const stockPrice = stockData['4. close'] === undefined ? '$0' : stockData['4. close'];
+    const stockPrice = stockData['4. close'] === undefined ? '$0' : '$' + stockData['4. close'];
     const noPriceFound = <h4>Sorry, stock cannot be retrieved at this time. Try again later.</h4>
     return (
         <Card img={images[imageNum.current]} title={stockPrice} subTitle={`${stockName.name} (${stockName.ticker})`} alt="random Unsplash picture" darkMode={props.darkMode}>
