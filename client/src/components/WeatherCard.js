@@ -1,5 +1,5 @@
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import Card from './Card';
 import {images} from './dataFiles/data';
@@ -13,8 +13,6 @@ const WeatherCard = props => {
     const [highTemp, setHighTemp] = useState('');
     const [lowTemp, setLowTemp] = useState('');
     const [city, setCity] = useState('');
-    const [lat, setLat] = useState(null);
-    const [lon, setLon] = useState(null);
     const [weatherIcon, setWeatherIcon] = useState('');
     const imageNum = useRef(randomNum())
 
@@ -22,16 +20,14 @@ const WeatherCard = props => {
         function success(position) {
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
-            setLat(() => latitude);
-            setLon(() => longitude);
-            if (!lat || !lon) return;
-            getWeather();
+            if (!latitude || !longitude) return;
+
+            getWeather(latitude, longitude);
         }
 
         function error() {
             console.log('Unable to retrieve your location');
         }
-
         if (!navigator.geolocation) {
             console.log('Can\'t determine location');
         } else {
@@ -40,10 +36,13 @@ const WeatherCard = props => {
 
 
     }
-    geoFindMe()
 
+    useEffect(() => {
+        geoFindMe()
 
-    const getWeather = () => {
+    }, [])
+
+    const getWeather = (lat, lon) => {
         if (!city) {
             axios.get('/weather', {
                 params: {
@@ -52,7 +51,6 @@ const WeatherCard = props => {
                     msg: 'Fetching weather...'
                 }
             }).then(res => {
-                // console.log(lat, lon)
                 // console.log(res.data.weather[0].main);
                 let weatherType = res.data.weather[0].main;
                   let icon = determineWeatherIcon(weatherType);

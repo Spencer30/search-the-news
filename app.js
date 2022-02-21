@@ -28,8 +28,9 @@ app.get('/news', (req, res) => {
 })
 
 app.get('/weather', (req, res) => {
-  // console.log(req.query.msg)
-  axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${req.query.lat}&lon=${req.query.lon}&APPID=${process.env.WEATHER_API_KEY}`, {APPID:process.env.WEATHER_API_KEY}).then(response => {
+  // console.log(req.query)
+  axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${req.query.lat}&lon=${req.query.lon}&APPID=${process.env.WEATHER_API_KEY}`).then(response => {
+    // console.log(response.data, process.env.WEATHER_API_KEY)
     return res.status(200).send(response.data);
   }).catch(err => {
     console.log(err)
@@ -37,22 +38,22 @@ app.get('/weather', (req, res) => {
 })
 
 app.get('/stockdata', (req, res) => {
-  try{
-  console.log(req.query.date);
-  axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${req.query.stock}&outputsize=compact&apikey=${process.env.STOCK_API}`).then(response => {
-    // console.log('data is:' + response.data['Time Series (Daily)'][`${req.query.date}`])
-    const refreshDate = response.data["Meta Data"]["3. Last Refreshed"];
-    // console.log(refreshDate)
-    const lastUpdateDate = refreshDate === req.query.date ? req.duery.date : refreshDate
-    // console.log(response.data)
-    res.status(200).send(response.data['Time Series (Daily)'][`${refreshDate}`]);
-  }).catch(err => {
+    try{
+    console.log(req.query.date);
+    axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${req.query.stock}&outputsize=compact&apikey=${process.env.STOCK_API}`).then(response => {
+      // console.log('data is:' + response.data['Time Series (Daily)'][`${req.query.date}`])
+      const refreshDate = response.data["Meta Data"]["3. Last Refreshed"];
+      // console.log(refreshDate)
+      const lastUpdateDate = refreshDate === req.query && req.query.date ? req.query.date : refreshDate
+      // console.log(response.data)
+      res.status(200).send(response.data['Time Series (Daily)'][`${refreshDate}`]);
+    }).catch(err => {
+      console.log(err)
+      res.status(404).send(err)
+    })
+  } catch(err) {
     console.log(err)
-    res.status(404).send(err)
-  })
-} catch(err) {
-  console.log(err)
-  res.status(400).send(err)
+    res.status(400).send(err)
 
 }
 })
