@@ -40,11 +40,12 @@ const WeatherCard = props => {
     useEffect(() => {
         geoFindMe()
 
+        // eslint-disable-next-line
     }, [])
 
     const getWeather = (lat, lon) => {
         if (!city) {
-            axios.get('/weather', {
+            axios.get('weather', {
                 params: {
                     lat: lat,
                     lon: lon,
