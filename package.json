@@ -12,7 +12,7 @@
     "react-dom": "^16.13.1",
     "react-scripts": "^5.0.0"
   },
-  "proxy": "https://us-central1-search-the-news.cloudfunctions.net",
+  "proxy": "http://127.0.0.1:7000/search-the-news/us-central1",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

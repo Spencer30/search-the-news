@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import axios from 'axios';
+import ApiUrl from "./config";
 import Title from './components/Title'
 import SearchBar from './components/SearchBar';
 import NewsContainer from './components/NewsContainer'
@@ -26,7 +27,7 @@ class App extends React.Component {
   }
 
   onSearchSubmit = term => {
-    axios.get('news', {
+    axios.get(`${ApiUrl}/news`, {
       params: { q: term }
     }).then(response => {
       const newsWithOutId = response.data.articles;

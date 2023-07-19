@@ -15,7 +15,7 @@ exports.stockData = functions.https.onRequest((req, res) => {
           // console.log(refreshDate)
           const lastUpdateDate = refreshDate === req.query && req.query.date ? req.query.date : refreshDate
           // console.log(response.data)
-          res.status(200).send(response.data['Time Series (Daily)'][`${refreshDate}`]);
+          res.set('Access-Control-Allow-Origin', '*').status(200).send(response.data['Time Series (Daily)'][`${refreshDate}`]);
         }).catch(err => {
           console.log(err)
           res.status(404).send(err)
@@ -31,7 +31,7 @@ exports.stockData = functions.https.onRequest((req, res) => {
 exports.weather = functions.https.onRequest((req, res) => {
     axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${req.query.lat}&lon=${req.query.lon}&APPID=${API.weather_key}`).then(response => {
         console.log(response.data, process.env.WEATHER_API_KEY)
-        return res.status(200).send(response.data);
+        return res.set('Access-Control-Allow-Origin', '*').status(200).send(response.data);
       }).catch(err => {
         console.log(err)
         res.status(404).send(err)
@@ -45,7 +45,7 @@ exports.news = functions.https.onRequest((req, res) => {
     })
         .then(function (response) {
 
-            res.send(response.data);
+            res.set('Access-Control-Allow-Origin', '*').send(response.data);
         })
         .catch(function (error) {
             // console.log(error);

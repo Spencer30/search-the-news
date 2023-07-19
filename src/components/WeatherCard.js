@@ -1,6 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
+import ApiUrl from "../config";
 import Card from './Card';
 import {images} from './dataFiles/data';
 const moment = require('moment');
@@ -46,7 +47,7 @@ const WeatherCard = props => {
 
     const getWeather = (lat, lon) => {
         if (!city) {
-            axios.get('weather', {
+            axios.get(`${ApiUrl}/weather`, {
                 params: {
                     lat: lat,
                     lon: lon,

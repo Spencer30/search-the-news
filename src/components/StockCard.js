@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { images, dowStocks } from './dataFiles/data'
 import axios from 'axios';
+import ApiUrl from "../config";
 import Card from './Card';
 const moment = require('moment');
 
@@ -26,7 +27,7 @@ const StockCard = props => {
             momentDate = moment().format('YYYY MM DD');
         }
         momentDate = momentDate.split(' ').join('-');
-        axios.get('stockData', { params: { stock: dowStocks[num].ticker, date: momentDate } }).then(res => {
+        axios.get(`${ApiUrl}/stockData`, { params: { stock: dowStocks[num].ticker, date: momentDate } }).then(res => {
             console.log(res);
             // console.log(Object.values(res.data.slice(0, -2)));
             let myDataObj = res.data;
