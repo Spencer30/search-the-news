@@ -26,7 +26,7 @@ const StockCard = props => {
             momentDate = moment().format('YYYY MM DD');
         }
         momentDate = momentDate.split(' ').join('-');
-        axios.get('stockdata', { params: { stock: dowStocks[num].ticker, date: momentDate } }).then(res => {
+        axios.get('stockData', { params: { stock: dowStocks[num].ticker, date: momentDate } }).then(res => {
             console.log(res);
             // console.log(Object.values(res.data.slice(0, -2)));
             let myDataObj = res.data;

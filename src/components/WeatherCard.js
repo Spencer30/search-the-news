@@ -27,6 +27,7 @@ const WeatherCard = props => {
 
         function error() {
             console.log('Unable to retrieve your location');
+            getWeather(39.099724, -94.5786)
         }
         if (!navigator.geolocation) {
             console.log('Can\'t determine location');
