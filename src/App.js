@@ -26,7 +26,7 @@ class App extends React.Component {
   }
 
   onSearchSubmit = term => {
-    axios.get('/news', {
+    axios.get('news', {
       params: { q: term }
     }).then(response => {
       const newsWithOutId = response.data.articles;
